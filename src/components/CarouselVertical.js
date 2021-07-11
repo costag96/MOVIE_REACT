@@ -4,14 +4,18 @@ import Carousel from "react-native-snap-carousel";
 import { Text, Title } from 'react-native-paper';
 import { BASE_PATH_IMG } from '../utils/constants';
 import { getGenerosMoviesApi } from '../api/peliculas';
+// lodash contiene funciones utiles de js, nos va a servir para el carrusel, se usa para dibujar los generos
 import {map, size} from "lodash";
+
 
 const{ width } = Dimensions.get("window");
 const ITEM_WIDTH = Math.round(width * 0.7);
 
+// lo que viene por props desde home
 export default function CarouselVertical(props) {
   const { data, navigation } = props;
 
+  // el carrusel, con el render item por cara item que tenga el array devolvera un objeto. dibujando peliculas.
   return (
     <Carousel
     layout={'default'}
@@ -23,12 +27,16 @@ export default function CarouselVertical(props) {
   );
 }
 
+// este renderItem es un componente interno del carrusel que se encarga de dibujar las peliculas, es gran parte del componente principal 
+// se hace el destructuring de todo lo que venga en data para poder usarlo.
+// va todo dentro del componente Touchable, que es parte de la utilidad del carrusel. Dentro del view se va a dibujar las peliculas de la manera usual
 function RenderItem(props){
   const { data, navigation } = props;
   const { id, title, poster_path, genre_ids } = data.item;
   const [generos,setGeneros] = useState(null);
   const imageUrl = `${BASE_PATH_IMG}/w500${poster_path}`;
 
+  // todo este useEffect es para usar el getGenerosMoviesApi. se necesita hacer el useEffect para poder ejecutar la peticion
   useEffect(() => {
     getGenerosMoviesApi(genre_ids).then((respuesta)=>{
       setGeneros(respuesta);
@@ -36,9 +44,10 @@ function RenderItem(props){
   }, []);
 
   const onNavigation = () => {
-    navigation.navigate("movie",{ id });
+    navigation.navigate("movie",{ id }); // parametro id para saber que peli viene por props
   }
 
+  //  onPress={onNavigation} se va a utilzar para poder hacer click en las pelis y que navegue a una screen para los detalles de la misma en Movie.js
   return(
     <TouchableWithoutFeedback onPress={onNavigation}>
       <View style={styles.card}>
@@ -57,6 +66,8 @@ function RenderItem(props){
   );
 }
 
+
+// Estilado de la tarjeta, imagen de la peli, el titulo y otras cosas necesarias
 const styles = StyleSheet.create({
     card: {
       shadowColor: "#000",
