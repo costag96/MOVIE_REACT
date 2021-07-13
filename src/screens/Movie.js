@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import {View, StyleSheet, ScrollView, Image} from 'react-native';
-import {Title,Text} from "react-native-paper";
+import {Title,Text,IconButton} from "react-native-paper";
 import {getMovieByIdApi} from "../api/peliculas";
+import {addMovieToFavApi, deleteMovieToFavApi} from "../api/atlas"
 import {BASE_PATH_IMG} from "../utils/constants";
 import { map } from 'lodash';
 import { Rating } from "react-native-ratings";
@@ -10,6 +11,8 @@ export default function Movie(props){
   const { route } = props;
   const { id } = route.params;
   const [movie, setMovie] = useState(null);
+  const [favorito, setFavorito] = useState(false);
+  const [btnClick, setbtnClick] = useState(false);
 
   useEffect(() => {
     getMovieByIdApi(id).then((response) => {
@@ -17,11 +20,31 @@ export default function Movie(props){
     });
   }, []);
 
+  useEffect(() => {
+    if(btnClick && !favorito){
+      console.log("Pelicula Agregada")
+      setbtnClick(false);
+      setFavorito(true);
+      /*addMovieToFavApi({"_id": "60e39ff2eb7372382c4dd9e9", "movie": id}).then((response) => {
+        
+      })*/
+    }
+    if(btnClick && favorito){
+      /*deleteMovieToFavApi({"_id": "60e39ff2eb7372382c4dd9e9", "movie": id}).then((response) => {
+        
+      })*/
+      console.log("Pelicula Quitada");
+      setbtnClick(false);
+      setFavorito(false);
+    }
+  },[btnClick]);
+
   if (!movie) return null;
   return(
     <>
       <ScrollView showsVerticalScrollIndicator={false}>
         <MovieImage poster={movie.poster_path} />
+        <FavIcon fav={favorito} setBtn={setbtnClick}/>
         <MovieTitle movie={movie} />
         <MovieRating voteCount={movie.vote_count} voteAverage={movie.vote_average} />
         <Text style={styles.overview}>{movie.overview}</Text>
@@ -30,6 +53,25 @@ export default function Movie(props){
       </ScrollView>
     </>
   );
+}
+
+
+
+function FavIcon(props){
+
+  const {fav,setBtn} = props;
+
+  return(
+    <View style={{justifyContent: 'flex-end',alignItems: 'flex-end'}}>
+      <IconButton 
+        icon="heart"
+        color = { fav ? "#fb3958" : "#fff"}
+        size={80}
+        style={styles.favicon}
+        onPress={() => setBtn(true)}
+      />
+    </View>
+  )
 }
 
 function MovieImage(props) {
@@ -117,5 +159,11 @@ const styles = StyleSheet.create({
     marginTop: 20,
     textAlign: "justify",
     color: "#8697a5"
+  },
+  favicon:{
+    marginTop: -40,
+    marginRight: 30,
+    width: 80,
+    height: 70,
   },
 })
