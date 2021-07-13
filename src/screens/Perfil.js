@@ -22,15 +22,22 @@ export default function Perfil(props){
       // nombre User mediante props para el bienvenido
     return(
         <>
-        <ScrollView showsVerticalScrollIndicator={false}>
+          {newMovies && (
+         <ScrollView showsVerticalScrollIndicator={false}>
            
-            <Title style={styles.caratulaPerfil }> Bienvenido a tu Perfil ...</Title>
-             <ListaAcordeon></ListaAcordeon>
-             <Title style={styles.textMovies }>Tu lista de deseados</Title>
-             <CarouselGenre data={newMovies} navigation={navigation} />
-             <Title style={styles.textMovies }>Tus Reviews</Title>
-           
-        </ScrollView>
+               <Title style={styles.caratulaPerfil }> Bienvenido a tu Perfil ...</Title>
+               <ListaAcordeon></ListaAcordeon>
+            
+                <Title style={styles.textDeseados }>Tu lista de deseados</Title>
+            
+                <CarouselGenre data={newMovies} navigation={navigation} />
+              <Title style={styles.textDeseados }>Tus Reviews</Title>
+            
+         </ScrollView>
+            
+          )    
+              }
+       
 
         </>
 
@@ -70,12 +77,12 @@ function ListaAmigos(){
 }
 
 function ListaAcordeon()  {
-    const [expanded, setExpanded] = React.useState(true);
+    const [expanded, setExpanded] = useState(false);
   
     const handlePress = () => setExpanded(!expanded);
   
     return (
-      <List.Section title="Tus Amigos">
+      <List.Section titleStyle={{fontSize: 20, fontWeight: 'bold',}}  title="Tus Amigos">
         <List.Accordion
           title="Amigos"
           left={props => <List.Icon {...props} icon="face" />}
@@ -106,15 +113,15 @@ const styles = StyleSheet.create({
         alignItems: "center",
       },
 
-      textMovies:{
+      textDeseados:{
         marginBottom: 10,
         marginTop: 10,
+        marginLeft:10,
         
       },
 
       amigos:{
         marginHorizontal:10,
-        
         marginTop: 10,
         fontWeight: 'bold',
          fontSize: 20,
