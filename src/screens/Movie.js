@@ -7,6 +7,8 @@ import {BASE_PATH_IMG} from "../utils/constants";
 import { map } from 'lodash';
 import { Rating } from "react-native-ratings";
 
+
+
 export default function Movie(props){
   const { route, navigation } = props;
   const { id } = route.params;

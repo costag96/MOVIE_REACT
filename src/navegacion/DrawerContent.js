@@ -4,12 +4,11 @@ import {DrawerContentScrollView} from "@react-navigation/drawer";
 import { Drawer, Switch, TouchableRipple, Text } from 'react-native-paper';
 import usePreference from "../hooks/usePreferences";
 
-export default function DrawerContent(props){
-  
+export default function DrawerContent(props){ 
   const {navigation} = props;
+ 
   const [active, setActive] = useState("home"); 
   const {theme, toggleTheme} = usePreference();
-
   const onChangeScreen = (screen) =>{
     setActive(screen);
     navigation.navigate(screen);
@@ -21,6 +20,7 @@ export default function DrawerContent(props){
         <Drawer.Item label="Inicio" active={active === 'home'} onPress={() => onChangeScreen('home')}/>
         <Drawer.Item label="Peliculas Populares" active={active === 'popular'} onPress={() => onChangeScreen('popular')}/>
         <Drawer.Item label="Nuevas peliculas" active={active === 'news'} onPress={() => onChangeScreen('news')}/>
+        <Drawer.Item label="Perfil" active={active === 'Perfil'} onPress={() => onChangeScreen('perfil')}/>
       </Drawer.Section>
       <Drawer.Section title="Opciones">
         <TouchableRipple>
