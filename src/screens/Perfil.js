@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import {View ,StyleSheet, ScrollView, Image, FlatList} from 'react-native';
+import {View ,StyleSheet, ScrollView, Image, FlatList, Button} from 'react-native';
 import {getUserApi} from '../api/atlas';
 import CarouselGenre from "../components/CarouselGenre";
 import {getNewsMoviesApi } from "../api/peliculas";
 import { List, Title, Text  } from 'react-native-paper';
+import {boton} from "../components/button"
 
 
 
 export default function Perfil(props){
     const { navigation } = props;
     const  [usuario, setUsuario] = useState(null);
-    const [newMovies,setNewMovies] = useState(null);
+    const [newMovies,setNewMovies] = useState();
 
     useEffect(() => {
         getNewsMoviesApi().then((data)=>{
@@ -18,13 +19,13 @@ export default function Perfil(props){
         });
       }, []);
 
+      // nombre User mediante props para el bienvenido
     return(
         <>
         <ScrollView showsVerticalScrollIndicator={false}>
            
             <Title style={styles.caratulaPerfil }> Bienvenido a tu Perfil ...</Title>
-             <ImagenPerfil> </ImagenPerfil>
-             <UnaLista></UnaLista>
+             <ListaAcordeon></ListaAcordeon>
              <Title style={styles.textMovies }>Tu lista de deseados</Title>
              <CarouselGenre data={newMovies} navigation={navigation} />
              <Title style={styles.textMovies }>Tus Reviews</Title>
@@ -46,29 +47,29 @@ function ImagenPerfil(){
     )
 }
 
+// TODO Agregar que renderice mediante forEach el componente amigo (nombre + boton borrado)
 function ListaAmigos(){
    return(
-    <View >
+   
       <FlatList
         data={[
-          {key: 'Devin'},
-          {key: 'Dan'},
-          {key: 'Dominic'},
-          {key: 'Jackson'},
-          {key: 'James'},
-          {key: 'Joel'},
-          {key: 'John'},
-          {key: 'Jillian'},
+          {key: 'Lucas'},
+          {key: 'Pablo21'},
+          {key: 'Sorren'},
+          {key: 'Antonia'},
+          {key: 'Ernesto'},
+          {key: 'Alfonso'},
+          {key: 'Carla'},
+          {key: 'Alberto'},
           {key: 'Jimmy'},
-          {key: 'Julie'},
         ]}
         renderItem={({item}) => <Text style={styles.amigos}>{item.key}</Text>}
       />
-    </View>
+
    )
 }
 
-function UnaLista()  {
+function ListaAcordeon()  {
     const [expanded, setExpanded] = React.useState(true);
   
     const handlePress = () => setExpanded(!expanded);
@@ -87,7 +88,7 @@ function UnaLista()  {
     );
   };
   
-
+ 
 
 
 const styles = StyleSheet.create({

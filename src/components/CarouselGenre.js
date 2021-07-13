@@ -4,9 +4,7 @@ import { Title } from 'react-native-paper';
 import Carousel from "react-native-snap-carousel";
 import { BASE_PATH_IMG } from '../utils/constants';
 
-// carrousel de peliculas por genero que va a traer pelis por genereo que querramos pinchando desde la home
 
-// carrusel mas chico que el anterior
 const{ width } = Dimensions.get("window");
 const ITEM_WIDTH = Math.round(width * 0.3);
 

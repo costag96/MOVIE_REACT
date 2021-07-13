@@ -14,7 +14,6 @@ export default function StackNavegacion(props){
 
   const {navigation} = props;
   
-  // menu hamburguesa
   const buttonLeft = (screen) => {
 
     switch(screen){
@@ -30,15 +29,13 @@ export default function StackNavegacion(props){
     };
   };
 
-  // este es el boton de  search con la lupita, que nos va a llevar al componente search, boton que va a aparecer en todos los screens, por eso
-  // se va a usar como headerRight en todos los stack.Screen
+ 
   const buttonRight = () => {
     return(
       <IconButton icon="magnify" onPress={() => navigation.navigate("search")}/>
     );
   };
 
-  // Stack de screens disponibles en la app para navegar
   return(
     <Stack.Navigator>
       <Stack.Screen name="home" component={Home} options={{title: "AtlasApp", headerLeft: () => buttonLeft("home"), headerRight: () => buttonRight()}} />

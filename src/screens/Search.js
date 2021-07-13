@@ -7,10 +7,6 @@ import {BASE_PATH_IMG} from "../utils/constants"
 
 const { width } = Dimensions.get("window");
 
-// Esta Screen utiliza el searchMoviesApi de Movies.js, se hace el seteo donde guarda el array y tambien el useEffect para poder hacer uso de la funcion, con un if de refresco minimo a 2 letras
-// Utiliza el componente Searchbar, donde colocara todo lo que tiene que ver con el buscador y abajo un Scrollview donde hace un map con lodash de lo que venga en movies del setState para poder
-// dibujar el componente Movie que se arma mas abajo como funcion subcomponente, sacando por props cada elemento del map,
-
 export default function Search(props){
   const {navigation} = props;
   const[movies,setMovies] = useState(null);

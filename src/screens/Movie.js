@@ -6,16 +6,13 @@ import {BASE_PATH_IMG} from "../utils/constants";
 import { map } from 'lodash';
 import { Rating } from "react-native-ratings";
 
-// Esta Screen es la que aparece al pinchar sobre una peli para expandir sobre sus datos, en principio iba a ser modal pero se complicó,
-// Cuenta con varias funciones modularizadas que hacen de componentes mas pequeños para que el return sea lo mas minimo posible, quiere decir que
-// por ejemplo para una imagen se crea una funcion con el return del View Image para llamarlo enb el return principal
+
 
 export default function Movie(props){
   const { route } = props;
   const { id } = route.params;
   const [movie, setMovie] = useState(null);
 
-  // useEffect para poder usar la funcion que devuelve peli por id
   useEffect(() => {
     getMovieByIdApi(id).then((response) => {
       setMovie(response);
