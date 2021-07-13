@@ -8,18 +8,22 @@ import Popular from "../screens/Popular"
 import Search from "../screens/Search"
 import Login from "../screens/Login"
 import Registro from "../screens/Registro"
+import Perfil from "../screens/Perfil";
+import AddReview from "../screens/AddReview"
+
+
 
 const Stack = createStackNavigator();
 
 export default function StackNavegacion(props){
 
   const {navigation} = props;
-
+  
   const buttonLeft = (screen) => {
-
     switch(screen){
       case "search":
       case "movie" :
+      //case"review":  
         return (
           <IconButton icon="arrow-left" onPress={() => navigation.goBack()}/>
       )
@@ -30,6 +34,7 @@ export default function StackNavegacion(props){
     };
   };
 
+ 
   const buttonRight = () => {
     return(
       <IconButton icon="magnify" onPress={() => navigation.navigate("search")}/>
@@ -44,7 +49,9 @@ export default function StackNavegacion(props){
       <Stack.Screen name="movie" component={Movie} options={{title: "",headerTransparent: true, headerLeft: () => buttonLeft("movie"), headerRight: () => buttonRight()}} />
       <Stack.Screen name="news" component={News} options={{title: "Nuevas Peliculas", headerLeft: () => buttonLeft("news"), headerRight: () => buttonRight()}} />
       <Stack.Screen name="popular" component={Popular} options={{title: "Peliculas Populares", headerLeft: () => buttonLeft("popular"), headerRight: () => buttonRight()}} />
-      <Stack.Screen name="search" component={Search} options={{ title: "", headerTransparent: true, headerLeft: () => buttonLeft("search") }} />
+      <Stack.Screen name="search" component={Search} options={{title: "", headerTransparent: true, headerLeft: () => buttonLeft("search")}} />
+      <Stack.Screen name="perfil" component={Perfil} options={{title: "Mi Perfil", headerLeft: () => buttonLeft("home"), headerRight: () => buttonRight()}} />
+      <Stack.Screen name="addReview" component={AddReview} options={{title: "",headerTransparent: true, headerLeft: () => buttonLeft("movie"), headerRight: () => buttonRight()}} />
     </Stack.Navigator>
   )
 }

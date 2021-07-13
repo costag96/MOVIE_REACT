@@ -6,12 +6,14 @@ import { BASE_PATH_IMG } from '../utils/constants';
 import { getGenerosMoviesApi } from '../api/peliculas';
 import {map, size} from "lodash";
 
+
 const{ width } = Dimensions.get("window");
 const ITEM_WIDTH = Math.round(width * 0.7);
 
 export default function CarouselVertical(props) {
   const { data, navigation } = props;
 
+ 
   return (
     <Carousel
     layout={'default'}
@@ -29,6 +31,7 @@ function RenderItem(props){
   const [generos,setGeneros] = useState(null);
   const imageUrl = `${BASE_PATH_IMG}/w500${poster_path}`;
 
+ 
   useEffect(() => {
     getGenerosMoviesApi(genre_ids).then((respuesta)=>{
       setGeneros(respuesta);
@@ -36,9 +39,10 @@ function RenderItem(props){
   }, []);
 
   const onNavigation = () => {
-    navigation.navigate("movie",{ id });
+    navigation.navigate("movie",{ id }); 
   }
 
+ 
   return(
     <TouchableWithoutFeedback onPress={onNavigation}>
       <View style={styles.card}>
@@ -56,6 +60,7 @@ function RenderItem(props){
     </TouchableWithoutFeedback>
   );
 }
+
 
 const styles = StyleSheet.create({
     card: {

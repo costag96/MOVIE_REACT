@@ -4,6 +4,7 @@ import { Title } from 'react-native-paper';
 import Carousel from "react-native-snap-carousel";
 import { BASE_PATH_IMG } from '../utils/constants';
 
+
 const{ width } = Dimensions.get("window");
 const ITEM_WIDTH = Math.round(width * 0.3);
 

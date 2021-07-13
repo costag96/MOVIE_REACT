@@ -12,6 +12,7 @@ export default function Home(props){
   const [listaDeGeneros, setlistaDeGeneros] = useState([]);
   const [generoSeleccionado, setGeneroSeleccionado] = useState(18);
   const [peliculasPorGenero, setPeliculasPorGenero] = useState(null);
+  const [review,setReview] = useState(null);
 
   useEffect(() => {
     getNewsMoviesApi().then((data)=>{
@@ -35,6 +36,7 @@ export default function Home(props){
     setGeneroSeleccionado(idGenero);
   }
 
+
   return(
     <ScrollView showsVerticalScrollIndicator={false}>
       {newMovies && (
@@ -42,7 +44,13 @@ export default function Home(props){
           <Title style={styles.newstitle}>Nuevas Peliculas</Title>
           <CarouselVertical data={newMovies} navigation={navigation} />
         </View>
-      ) }
+      )}
+      {review && (
+        <View style={styles.review}>
+          <Title style={styles.reviewtitle}>Reviews</Title>
+          <CarouselVertical data={review} navigation={navigation} />
+        </View>
+      )}
       <View style={styles.moviegeneros}>
         <Title style={styles.titulogeneros}>Peliculas por genero</Title>
         <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.listageneros}>
