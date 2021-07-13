@@ -4,15 +4,7 @@ import {Title,Text,TextInput, Button} from "react-native-paper";
 import {getMovieByIdApi} from "../api/peliculas";
 import {BASE_PATH_IMG} from "../utils/constants";
 
-
-
-
-
-
-
-
 export default function AddReview({route}){
-
    const  [revText, setRevText] = useState('');
    const [score, setScore ] = useState('');
    const {movie} = route.params;
@@ -25,7 +17,7 @@ return (
         <TextInput mode = "outlined" placeholder = "Input Review" style={styles.review}
          value = {revText} onChangeText = {text => setRevText(text)}/>
         <TextInput placeholder = "Enter Rating (1-5)" keyboardType = "numeric" style={[styles.genText, {marginTop: 30}, {marginBottom: 30}]}
-        value = {score} onchangeText = {text => setScore(text)}/>
+        value = {score} onChangeText = {text => setScore(text)}/>
         <Button mode = "contained" icon="content-save-outline" mode="contained" onPress={() => {
             (validateForm(revText, score)) ? console.log('API CALL') : console.log('Invalidated') 
         }}>
@@ -55,8 +47,8 @@ function validateForm (revText, score){
                 console.log('Error2');
                 return success;
             }
-            console.log('Sucess');    
-            sucess = true;
+            console.log('Success');    
+            success = true;
             return success;
             
 }
