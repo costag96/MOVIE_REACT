@@ -15,9 +15,6 @@ export default function StackNavegacion(props){
   const {navigation} = props;
 
   const buttonLeft = (screen) => {
-
-
-
     switch(screen){
       case "search":
       case "movie" :
