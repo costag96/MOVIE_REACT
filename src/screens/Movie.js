@@ -77,7 +77,6 @@ function FavIcon(props){
   )
 }
 
-
 function MovieImage(props) {
   const { poster } = props
 

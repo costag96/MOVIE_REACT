@@ -6,8 +6,11 @@ import Movie from "../screens/Movie"
 import News from "../screens/News"
 import Popular from "../screens/Popular"
 import Search from "../screens/Search"
+import Login from "../screens/Login"
+import Registro from "../screens/Registro"
 import Perfil from "../screens/Perfil";
 import AddReview from "../screens/AddReview"
+
 
 
 const Stack = createStackNavigator();
@@ -40,7 +43,9 @@ export default function StackNavegacion(props){
 
   return(
     <Stack.Navigator>
-      <Stack.Screen name="home" component={Home} options={{title: "AtlasApp", headerLeft: () => buttonLeft("home"), headerRight: () => buttonRight()}} />
+      {/* <Stack.Screen name="login" component={Login} options={{ headerShown: false, cardStyle: { backgroundColor: 'black'} }} /> */}
+      {/* <Stack.Screen name="registro" component={Registro}/> */}
+      <Stack.Screen name="home" component={Home} options={{ title: "AtlasApp", headerLeft: () => buttonLeft("home"), headerRight: () => buttonRight() }} />
       <Stack.Screen name="movie" component={Movie} options={{title: "",headerTransparent: true, headerLeft: () => buttonLeft("movie"), headerRight: () => buttonRight()}} />
       <Stack.Screen name="news" component={News} options={{title: "Nuevas Peliculas", headerLeft: () => buttonLeft("news"), headerRight: () => buttonRight()}} />
       <Stack.Screen name="popular" component={Popular} options={{title: "Peliculas Populares", headerLeft: () => buttonLeft("popular"), headerRight: () => buttonRight()}} />
