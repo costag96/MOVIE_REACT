@@ -44,7 +44,7 @@ export default function Home(props){
           <Title style={styles.newstitle}>Nuevas Peliculas</Title>
           <CarouselVertical data={newMovies} navigation={navigation} />
         </View>
-      ) }
+      )}
       {review && (
         <View style={styles.review}>
           <Title style={styles.reviewtitle}>Reviews</Title>
