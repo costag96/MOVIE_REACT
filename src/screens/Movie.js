@@ -31,7 +31,6 @@ export default function Movie(props){
     </>
   );
 }
-
 function MovieImage(props) {
   const { poster } = props
 
