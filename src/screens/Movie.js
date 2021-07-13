@@ -58,14 +58,6 @@ export default function Movie(props){
   );
 }
 
-
-/*
-function addReview(props){
-
-}*/
-
-
-
 function FavIcon(props){
 
   const {fav,setBtn} = props;
