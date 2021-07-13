@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import {View, StyleSheet, ScrollView, Image} from 'react-native';
-import {Title,Text,IconButton} from "react-native-paper";
+import {View, StyleSheet, ScrollView, Image, Button} from 'react-native';
+import {Title,Text, IconButton} from "react-native-paper";
 import {getMovieByIdApi} from "../api/peliculas";
 import {addMovieToFavApi, deleteMovieToFavApi} from "../api/atlas"
 import {BASE_PATH_IMG} from "../utils/constants";
@@ -8,7 +8,7 @@ import { map } from 'lodash';
 import { Rating } from "react-native-ratings";
 
 export default function Movie(props){
-  const { route } = props;
+  const { route, navigation } = props;
   const { id } = route.params;
   const [movie, setMovie] = useState(null);
   const [favorito, setFavorito] = useState(false);
@@ -19,6 +19,7 @@ export default function Movie(props){
       setMovie(response);
     });
   }, []);
+
 
   useEffect(() => {
     if(btnClick && !favorito){
@@ -49,11 +50,19 @@ export default function Movie(props){
         <MovieRating voteCount={movie.vote_count} voteAverage={movie.vote_average} />
         <Text style={styles.overview}>{movie.overview}</Text>
         <Text style={[styles.overview, {marginBottom: 30}]}>Fecha de Lanzamiento: {movie.release_date}</Text>
-        <Text>Reviews: FALTA</Text>
+        <Button
+        onPress={() => navigation.navigate('addReview', {movie: movie})}
+        title='Add Review'/>
       </ScrollView>
     </>
   );
 }
+
+
+/*
+function addReview(props){
+
+}*/
 
 
 
@@ -73,6 +82,7 @@ function FavIcon(props){
     </View>
   )
 }
+
 
 function MovieImage(props) {
   const { poster } = props
