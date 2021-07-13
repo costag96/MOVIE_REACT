@@ -1,5 +1,6 @@
 import {API_KEY, API_HOST, LANG} from "../utils/constants";
 
+
 export function getNewsMoviesApi(page=1){
   const url = `${API_HOST}/movie/now_playing?api_key=${API_KEY}&language=${LANG}&page=${page}`;
   
@@ -11,6 +12,7 @@ export function getNewsMoviesApi(page=1){
     return resultado;
   });
 }
+
 
 export function getGenerosMoviesApi(idGenero){
   const url = `${API_HOST}/genre/movie/list?api_key=${API_KEY}&language=${LANG}`;
@@ -30,6 +32,7 @@ export function getGenerosMoviesApi(idGenero){
   });
 }
 
+
 export function getTodoGenerosMoviesApi(){
   const url = `${API_HOST}/genre/movie/list?api_key=${API_KEY}&language=${LANG}`;
   
@@ -41,6 +44,7 @@ export function getTodoGenerosMoviesApi(){
     return resultado;
   });
 }
+
 
 export function getMoviesByGenreApi(idGenres){
   const url = `${API_HOST}/discover/movie?api_key=${API_KEY}&with_genres=${idGenres}&language=${LANG}`;
@@ -77,7 +81,6 @@ export function getPopularMovieApi(page=1){
     return resultado;
   });
 }
-
 export function searchMoviesApi(search){
   const url = `${API_HOST}/search/movie?api_key=${API_KEY}&language=${LANG}&query=${search}`;
 

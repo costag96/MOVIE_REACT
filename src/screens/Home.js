@@ -36,6 +36,7 @@ export default function Home(props){
     setGeneroSeleccionado(idGenero);
   }
 
+
   return(
     <ScrollView showsVerticalScrollIndicator={false}>
       {newMovies && (

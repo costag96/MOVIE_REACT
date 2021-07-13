@@ -7,7 +7,6 @@ import {BASE_PATH_IMG} from "../utils/constants"
 
 const { width } = Dimensions.get("window");
 
-
 export default function Search(props){
   const {navigation} = props;
   const[movies,setMovies] = useState(null);
